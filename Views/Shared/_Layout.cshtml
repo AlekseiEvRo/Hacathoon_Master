@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hacathoon</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Hacathoon.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+                <div class="container-fluid d-flex justify-content-center">
+                    <div>
+                        <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto mb-2 mb-lg-0 justify-content-around align-items-center" style="width:600px;">
+                                <li class="nav-item">
+                                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                                        <img src="~/img/logo.svg" width="100" height="100" alt="" loading="lazy">
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Home" asp-action="Index">
+                                        <button class="btn btn-info" style="width:100px;">Главная</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Home" asp-action="Contacts">
+                                        <button class="btn btn-info" style="width:100px;">Контакты</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Home" asp-action="About">
+                                        <button class="btn btn-info" style="width:100px;">О нас</button>
+                                    </form>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Login" asp-action="Index">
+                                        <button class="btn btn-info" style="width:100px;">Войти</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Hacathoon - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

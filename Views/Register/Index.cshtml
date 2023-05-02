@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Вход";
+    Layout = "~/Views/Register/_Layout.cshtml";
+}
+
+<h1 class="text-center pb-5">Регистрация</h1>
+
+<div class="container">
+
+    <div class="row">
+
+        <div id="login-image-container" class="col">
+            <img src="~/img/600x800.png" />
+        </div>
+
+        <div id="login-form-container" class="col d-flex flex-column justify-content-center">
+            <form class="d-flex w-100">
+                <div class="d-flex flex-column justify-content-center w-100">
+                    <div class="">
+                        <div>
+                            <label for="inputName" class="col-form-label">Имя</label>
+                        </div>
+                        <div>
+                            <input type="text" id="inputName" class="form-control" aria-describedby="NameHelpInline">
+                        </div>
+                        <div>
+                            <span id="NameHelpInline" class="form-text">
+                                Иван
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div>
+                            <label for="inputSurname" class="col-form-label">Фамилия</label>
+                        </div>
+                        <div>
+                            <input type="text" id="inputSurname" class="form-control" aria-describedby="SurnameHelpInline">
+                        </div>
+                        <div>
+                            <span id="SurnameHelpInline" class="form-text">
+                                Иванов
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div>
+                            <label for="inputTelephone" class="col-form-label">Номер телефона</label>
+                        </div>
+                        <div>
+                            <input type="tel" id="inputTelephone" class="form-control" aria-describedby="TelephoneHelpInline">
+                        </div>
+                        <div>
+                            <span id="TelephoneHelpInline" class="form-text">
+                                8(123)4567890
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div>
+                            <label for="inputEmail" class="col-form-label">Почта</label>
+                        </div>
+                        <div>
+                            <input type="email" id="inputEmail" class="form-control" aria-describedby="EmailHelpInline">
+                        </div>
+                        <div>
+                            <span id="EmailHelpInline" class="form-text">
+                                example@mail.ru
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div>
+                            <label for="inputPassword" class="col-form-label">Пароль</label>
+                        </div>
+                        <div>
+                            <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                        <div>
+                            <span id="passwordHelpInline" class="form-text">
+                                Должно быть 8-20 символов.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <a asp-action="" asp-controller=""><p class="form-text">Не помню пароль</p></a>
+                    </div>
+                    
+                    <button class="btn btn-info" type="submit">Зарегистрироваться</button>
+                    
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+</div>

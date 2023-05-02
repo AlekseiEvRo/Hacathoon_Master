@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hacathoon_Master", "Hacathoon_Master.csproj", "{FBF97A29-B644-412E-B485-A8747A683871}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBF97A29-B644-412E-B485-A8747A683871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF97A29-B644-412E-B485-A8747A683871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF97A29-B644-412E-B485-A8747A683871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF97A29-B644-412E-B485-A8747A683871}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63DB1925-ADF5-49CC-889D-8EDF47EFF9E6}
+	EndGlobalSection
+EndGlobal

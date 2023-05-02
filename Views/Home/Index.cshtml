@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<h1 class="text-center" style="padding-top:100px;">Предстоящее событие</h1>
+
+<div id="carouselExampleIndicators" class="carousel slide pb-5" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/1200x700.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Хакатон в СибГУ</h5>
+                <p>Немного данных о хакатоне и ниже кнопка "Подробнее"</p>
+                <button type="button" class="btn btn-info">Подробнее</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="registraion_links_container" class="container pt-5 pb-5">
+    <div class="row">
+        <div class="col-6">
+            <img src="~/img/600x800.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="col d-flex flex-column justify-content-center align-items-center">
+            <div class="text-center pb-3">
+                <h1 class="display-6">Регистрируйся прямо сейчас!</h1>
+            </div>
+            <div class="pb-3 w-75">
+                <button type="button" class="btn btn-info w-100">Я участник</button>
+            </div>
+            <div class="pb-3 w-75">
+                <button type="button" class="btn btn-info w-100">Я капитан команды</button>
+            </div>
+        </div>
+    </div>
+</div>

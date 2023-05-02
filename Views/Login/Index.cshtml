@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Вход";
+    Layout = "~/Views/Login/_Layout.cshtml";
+}
+@model Hacathoon_Master.Models.LoginViewModel
+
+<h1 class="text-center pb-5">Вход в личный кабинет</h1>
+
+<div class="container">
+
+    <div class="row">
+
+        <div id="login-image-container" class="col">
+            <img src="~/img/600x800.png" />
+        </div>
+
+        <div id="login-form-container" class="col d-flex flex-column justify-content-center">
+            <form class="d-flex w-100" asp-controller="Login" asp-action="Login">
+                <div class="d-flex flex-column justify-content-center w-100">
+
+                    <div class="">
+                        <div>
+                            <label for="inputEmail" class="col-form-label">Почта</label>
+                        </div>
+                        <div>
+                            <input id="inputEmail" class="form-control" aria-describedby="EmailHelpInline" asp-for="Login">
+                        </div>
+                        <div>
+                            <span id="EmailHelpInline" class="form-text">
+                                example@mail.ru
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div>
+                            <label for="inputPassword" class="col-form-label">Пароль</label>
+                        </div>
+                        <div>
+                            <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline" asp-for="Password">
+                        </div>
+                        <div>
+                            <span id="passwordHelpInline" class="form-text">
+                                Должно быть 8-20 символов.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="">
+                        <a asp-action="" asp-controller=""><p class="form-text">Не помню пароль</p></a>
+                    </div>
+
+                    <button class="btn btn-info" type="submit">Войти</button>
+
+                </div>
+            </form>
+            <form asp-controller="Register" asp-action="Index">
+                <div id="registration-btn-container" class="pt-2">
+                    <button class="btn btn-info w-100">Зарегистрироваться</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+</div>
