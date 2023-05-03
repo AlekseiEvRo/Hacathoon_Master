@@ -6,7 +6,6 @@
     <title>@ViewData["Title"] - Hacathoon</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Hacathoon.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -37,9 +36,9 @@
                                     </form>
                                 </li>
                                 <li class="nav-item">
-                                    <form asp-controller="Login" asp-action="Index">
+                                    <a asp-controller="Login" asp-action="Index" >
                                         <button class="btn btn-info" style="width:100px;">Войти</button>
-                                    </form>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
