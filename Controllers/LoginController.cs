@@ -49,7 +49,17 @@ namespace Hacathoon_Master.Controllers
 
                 if (user_auth.User_Password == hash)
                 {
-                    //TODO логика авторизации
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user_auth.User_Login),
+                        new Claim(ClaimTypes.Role, "admin")
+                    };
+
+                    var claim = new ClaimsIdentity(claims, "ApplicationCookie",
+                        ClaimsIdentity.DefaultRoleClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claim));
                 }
                     
                 return RedirectToAction("Index", "Home");
