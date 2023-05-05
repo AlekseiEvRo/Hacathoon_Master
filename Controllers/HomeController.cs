@@ -21,7 +21,7 @@ namespace Hacathoon_Master.Controllers
 
         public IActionResult Index()
         {
-            return View("Views/Home/Index.cshtml");
+            return View();
         }
 
         public IActionResult Contacts()

@@ -7,7 +7,7 @@ namespace Hacathoon_Master.Models
 {
     public class BaseViewModel
     {
-
+        
 
     }
 }
