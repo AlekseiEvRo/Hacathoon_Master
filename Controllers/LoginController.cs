@@ -20,8 +20,6 @@ namespace Hacathoon_Master.Controllers
     public class LoginController : Controller
     {
         private readonly IConfiguration _configuration;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
         public LoginController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -32,18 +30,11 @@ namespace Hacathoon_Master.Controllers
             return View();
         }
 
-        // GET: Login/Register
-        public ActionResult Register()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> LoginAsync(LoginViewModel loginViewModel)
         {
-            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
-            {
-                var user_auth = db.User_Auth.Where(auth => auth.User_Login == "admin").FirstOrDefault();
-
+             using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
+             {
+                var user_auth = db.User_Auth.Where(auth => auth.User_Login == loginViewModel.Login).FirstOrDefault();
                 var md5 = MD5.Create();
                 var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(loginViewModel.Password)));
 
@@ -52,7 +43,7 @@ namespace Hacathoon_Master.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user_auth.User_Login),
-                        new Claim(ClaimTypes.Role, "admin")
+                        new Claim(ClaimTypes.Role, GetUserRole(user_auth.User_Login))
                     };
 
                     var claim = new ClaimsIdentity(claims, "ApplicationCookie",
@@ -67,72 +58,13 @@ namespace Hacathoon_Master.Controllers
            
         }
 
-        // GET: Login/Details/5
-        public ActionResult Details(int id)
+        private string GetUserRole(string user_login)
         {
-            return View();
-        }
-
-        // GET: Login/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Login/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                var user_role = db.User.Where(u => u.Email == user_login).FirstOrDefault().Role_ID;
 
-        // GET: Login/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Login/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Login/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Login/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return db.User_Roles.Where(r => r.Role_ID == user_role).FirstOrDefault().Role_Name;
             }
         }
     }
