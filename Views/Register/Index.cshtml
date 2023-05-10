@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Вход";
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
     Layout = "~/Views/Register/_Layout.cshtml";
 }
 
@@ -14,7 +15,7 @@
         </div>
 
         <div id="login-form-container" class="col d-flex flex-column justify-content-center">
-            <form class="d-flex w-100">
+            <form class="d-flex w-100" asp-controller="Register" asp-action="Register">
                 <div class="d-flex flex-column justify-content-center w-100">
                     <div class="">
                         <div>
@@ -84,10 +85,6 @@
                                 Должно быть 8-20 символов.
                             </span>
                         </div>
-                    </div>
-
-                    <div class="">
-                        <a asp-action="" asp-controller=""><p class="form-text">Не помню пароль</p></a>
                     </div>
                     
                     <button class="btn btn-info" type="submit">Зарегистрироваться</button>

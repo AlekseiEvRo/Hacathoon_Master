@@ -38,7 +38,7 @@
                                         <button class="btn btn-info" style="width:100px;">О нас</button>
                                     </form>
                                 </li>
-                                @if (User.IsInRole("admin"))
+                                @if (User.IsInRole("ADMIN"))
                                 {
                                     <li class="nav-item">
                                         <a asp-controller="Admin" asp-action="Index" >
@@ -46,7 +46,7 @@
                                         </a>
                                     </li>
                                 }
-                                @if (User.IsInRole("user"))
+                                @if (User.IsInRole("USER"))
                                 {
                                     <li class="nav-item">
                                         <a asp-controller="Account" asp-action="Index" >

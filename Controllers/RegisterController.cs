@@ -8,5 +8,10 @@ namespace Hacathoon_Master.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return Index();
+        }
     }
 }
