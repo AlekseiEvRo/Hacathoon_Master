@@ -42,7 +42,8 @@ namespace Hacathoon_Master.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user_auth.User_Login),
+                        new Claim(ClaimTypes.Email, user_auth.User_Login),
+                        new Claim(ClaimTypes.Name, db.User.Where(u => u.Email == user_auth.User_Login).FirstOrDefault().Name),
                         new Claim(ClaimTypes.Role, GetUserRole(user_auth.User_Login))
                     };
 

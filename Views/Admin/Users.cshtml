@@ -1,0 +1,68 @@
+﻿@using Hacathoon_Master.Entities
+@model UserViewModel
+@{
+    ViewBag.Title = "Админка";
+    Layout = "_Layout";
+}
+
+@section SidebarMenu
+{
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+            <li class="nav-item">
+                <a asp-controller="Admin" asp-action="Users" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Пользователи
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Хакатоны
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+
+<div class="">
+    <div class="row">
+        <button>
+            <a asp-action="Index" asp-controller="Admin">Добавить администратора</a>
+        </button>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">#</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Роль</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach(var user in Model.Users)
+            {
+                <tr class="table-secondary">
+                    <th scope="row">@user.Id</th>
+                    <td>@user.Surname</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Phone</td>
+                    <td>@Enum.Parse(typeof(Roles), user.Role_ID.ToString())</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
