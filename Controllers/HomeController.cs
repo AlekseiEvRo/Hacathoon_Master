@@ -33,7 +33,7 @@ namespace Hacathoon_Master.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "admin")]
+        
         public IActionResult About()
         {
             return View();
