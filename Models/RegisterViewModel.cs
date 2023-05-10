@@ -9,5 +9,6 @@ namespace Hacathoon_Master.Models
         public string Phone { get; set; }
         public DateTime Date_Of_Birth { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
