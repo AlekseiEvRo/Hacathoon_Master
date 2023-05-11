@@ -34,17 +34,17 @@ namespace Hacathoon_Master.Controllers
         {
              using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
              {
-                var user_auth = db.User_Auth.Where(auth => auth.User_Login == loginViewModel.Login).FirstOrDefault();
+                var user_auth = db.User_Auth.Where(auth => auth.UserLogin == loginViewModel.Login).FirstOrDefault();
                 var md5 = MD5.Create();
                 var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(loginViewModel.Password)));
 
-                if (user_auth.User_Password == hash)
+                if (user_auth.UserPassword == hash)
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Email, user_auth.User_Login),
-                        new Claim(ClaimTypes.Name, db.User.Where(u => u.Email == user_auth.User_Login).FirstOrDefault().Name),
-                        new Claim(ClaimTypes.Role, GetUserRole(user_auth.User_Login))
+                        new Claim(ClaimTypes.Email, user_auth.UserLogin),
+                        new Claim(ClaimTypes.Name, db.User.Where(u => u.Email == user_auth.UserLogin).FirstOrDefault().Name),
+                        new Claim(ClaimTypes.Role, GetUserRole(user_auth.UserLogin))
                     };
 
                     var claim = new ClaimsIdentity(claims, "ApplicationCookie",
@@ -63,9 +63,9 @@ namespace Hacathoon_Master.Controllers
         {
             using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
             {
-                var user_role = db.User.Where(u => u.Email == user_login).FirstOrDefault().Role_ID;
+                var user_role = db.User.Where(u => u.Email == user_login).FirstOrDefault().RoleId;
 
-                return db.User_Roles.Where(r => r.Role_ID == user_role).FirstOrDefault().Role_Name;
+                return db.User_Roles.Where(r => r.RoleId == user_role).FirstOrDefault().RoleName;
             }
         }
     }

@@ -26,41 +26,8 @@ namespace Hacathoon_Master.Controllers
 
         public IActionResult Register(RegisterViewModel registerViewModel)
         {
-            var user = new User()
-            {
-                Name = registerViewModel.Name,
-                Surname = registerViewModel.Surname,
-                Email = registerViewModel.Email,
-                Phone = registerViewModel.Phone,
-                Date_Of_Birth = DateTime.Now,
-                Registration_Date = DateTime.Now,
-                Role_ID = (int)Roles.USER
-            };
-
-            var userId = 0;
-            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
-            {
-                db.User.Add(user);
-                db.SaveChanges();
-                userId = db.User.Where(u => u.Email == user.Email).FirstOrDefault().Id;
-            }
-            
-            var md5 = MD5.Create();
-            var hash = Convert.ToBase64String(md5.ComputeHash(Encoding.UTF8.GetBytes(registerViewModel.Password)));
-
-            var user_auth = new User_Auth()
-            {
-                User_ID = userId,
-                User_Login = user.Email,
-                User_Password = hash
-            };
-            
-            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
-            {
-                db.User_Auth.Add(user_auth);
-                db.SaveChanges();
-            }
-
+            var userController = new UserController(_configuration);
+            userController.CreateUser(registerViewModel);
             return RedirectToAction("Index", "Home");
         }
     }
