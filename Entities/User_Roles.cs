@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hacathoon_Master.Entities
 {
     public class User_Roles
     {
-        [Key]
-        public int Role_ID { get; set; }
-        public string Role_Name { get; set; }
+        [Key, Column("Role_ID")]
+        public int RoleId { get; set; }
+        [Column("Role_Name")]
+        public string RoleName { get; set; }
     }
 }

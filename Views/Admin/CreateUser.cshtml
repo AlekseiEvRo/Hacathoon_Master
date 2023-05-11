@@ -1,0 +1,122 @@
+﻿@model UserViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Новый пользователь";
+}
+
+@section SidebarMenu
+{
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+            <li class="nav-item">
+                <a asp-controller="Admin" asp-action="Users" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Пользователи
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Admin" asp-action="Hackathons" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Хакатоны
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+
+<div id="login-form-container" class="container">
+    <form class="d-flex w-100" asp-controller="Admin" asp-action="CreateUser">
+        <div class="d-flex flex-column justify-content-center w-100">
+            <div class="">
+                <div>
+                    <label for="inputName" class="col-form-label">Имя</label>
+                </div>
+                <div>
+                    <input type="text" id="inputName" class="form-control" aria-describedby="NameHelpInline" asp-for="Name">
+                </div>
+                <div>
+                    <span id="NameHelpInline" class="form-text">
+                        Иван
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputSurname" class="col-form-label">Фамилия</label>
+                </div>
+                <div>
+                    <input type="text" id="inputSurname" class="form-control" aria-describedby="SurnameHelpInline" asp-for="Surname">
+                </div>
+                <div>
+                    <span id="SurnameHelpInline" class="form-text">
+                        Иванов
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputTelephone" class="col-form-label">Номер телефона</label>
+                </div>
+                <div>
+                    <input type="tel" id="inputTelephone" class="form-control" aria-describedby="TelephoneHelpInline" asp-for="Phone">
+                </div>
+                <div>
+                    <span id="TelephoneHelpInline" class="form-text">
+                        8(123)4567890
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputEmail" class="col-form-label">Почта</label>
+                </div>
+                <div>
+                    <input type="email" id="inputEmail" class="form-control" aria-describedby="EmailHelpInline" asp-for="Email">
+                </div>
+                <div>
+                    <span id="EmailHelpInline" class="form-text">
+                        example@mail.ru
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputPassword" class="col-form-label">Пароль</label>
+                </div>
+                <div>
+                    <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline" asp-for="Password">
+                </div>
+                <div>
+                    <span id="passwordHelpInline" class="form-text">
+                        Должно быть 8-20 символов.
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputRole" class="col-form-label">Роль</label>
+                </div>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" asp-for="RoleId">
+                    <option selected value=1>ADMIN</option>
+                    <option value=2>USER</option>
+                </select>
+            </div>
+
+            <button class="btn btn-info" type="submit">Создать пользователя</button>
+
+        </div>
+    </form>
+
+</div>
