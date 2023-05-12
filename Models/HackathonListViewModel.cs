@@ -3,7 +3,7 @@ using Hacathoon_Master.Entities;
 
 namespace Hacathoon_Master.Models
 {
-    public class HackathonsViewModel
+    public class HackathonListViewModel
     {
         public List<Hackathon> Hackathons;
     }

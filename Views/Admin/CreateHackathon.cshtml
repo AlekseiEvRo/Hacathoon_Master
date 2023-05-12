@@ -1,0 +1,173 @@
+﻿@model HackathonViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Новый пользователь";
+}
+
+@section SidebarMenu
+{
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+            <li class="nav-item">
+                <a asp-controller="Admin" asp-action="Users" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Пользователи
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Admin" asp-action="Hackathons" class="nav-link active">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Хакатоны
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+
+<div id="login-form-container" class="container pb-3">
+    <form class="d-flex w-100" asp-controller="Admin" asp-action="CreateHackathon">
+        <div class="d-flex flex-column justify-content-center w-100">
+            <div class="">
+                <div>
+                    <label for="inputName" class="col-form-label">Название</label>
+                </div>
+                <div>
+                    <input type="text" id="inputName" class="form-control" aria-describedby="NameHelpInline" asp-for="Name">
+                </div>
+                <div>
+                    <span id="NameHelpInline" class="form-text">
+                        Иван
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputStartDate" class="col-form-label">Дата начала</label>
+                </div>
+                <div>
+                    <input type="date" id="inputStartDate" class="form-control" aria-describedby="StartDateHelpInline" asp-for="StartDate">
+                </div>
+                <div>
+                    <span id="StartDateHelpInline" class="form-text">
+                        Иванов
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputEndDate" class="col-form-label">Дата окончания</label>
+                </div>
+                <div>
+                    <input type="date" id="inputEndDate" class="form-control" aria-describedby="EndDateHelpInline" asp-for="EndDate">
+                </div>
+                <div>
+                    <span id="TelephoneEndDate" class="form-text">
+                        8(123)4567890
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputEndRegistrationDate" class="col-form-label">Дата окончания регистрации</label>
+                </div>
+                <div>
+                    <input type="date" id="inputEndRegistrationDate" class="form-control" aria-describedby="EndRegistrationDateHelpInline" asp-for="EndRegistrationDate">
+                </div>
+                <div>
+                    <span id="EndRegistrationDateHelpInline" class="form-text">
+                        example@mail.ru
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputType" class="col-form-label">Тип</label>
+                </div>
+                <div>
+                    <input type="text" id="inputType" class="form-control" aria-describedby="TypeHelpInline" asp-for="Type">
+                </div>
+                <div>
+                    <span id="TypeHelpInline" class="form-text">
+                        Должно быть 8-20 символов.
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputOrganisation" class="col-form-label">Организатор</label>
+                </div>
+                <div>
+                    <input type="text" id="OrganisationOrganisation" class="form-control" aria-describedby="OrganisationHelpInline" asp-for="Organisation">
+                </div>
+                <div>
+                    <span id="OrganisationHelpInline" class="form-text">
+                        Должно быть 8-20 символов.
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Изображение</label>
+                <input class="form-control" type="file" id="formFile" asp-for="Image">
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputGoal" class="col-form-label">Цель</label>
+                </div>
+                <div>
+                    <input type="text" id="inputGoal" class="form-control" aria-describedby="GoalHelpInline" asp-for="Goal">
+                </div>
+                <div>
+                    <span id="GoalHelpInline" class="form-text">
+                        Должно быть 8-20 символов.
+                    </span>
+                </div>
+            </div>
+            
+            <div class="">
+                <div>
+                    <label for="inputPrize" class="col-form-label">Приз</label>
+                </div>
+                <div>
+                    <input type="text" id="inputPrize" class="form-control" aria-describedby="PrizeHelpInline" asp-for="Prize">
+                </div>
+                <div>
+                    <span id="PrizeHelpInline" class="form-text">
+                        Должно быть 8-20 символов.
+                    </span>
+                </div>
+            </div>
+            
+            <div class="">
+                <div>
+                    <label for="inputTargetAudience" class="col-form-label">Целевая аудитория</label>
+                </div>
+                <div>
+                    <input type="text" id="inputTargetAudience" class="form-control" aria-describedby="TargetAudienceHelpInline" asp-for="TargetAudience">
+                </div>
+                <div>
+                    <span id="TargetAudienceHelpInline" class="form-text">
+                        Должно быть 8-20 символов.
+                    </span>
+                </div>
+            </div>
+
+            <button class="btn btn-info" type="submit">Создать хакатон</button>
+
+        </div>
+    </form>
+
+</div>

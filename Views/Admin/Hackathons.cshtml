@@ -1,5 +1,5 @@
 ﻿@using Hacathoon_Master.Entities
-@model HackathonsViewModel
+@model HackathonListViewModel
 @{
     ViewBag.Title = "Админка";
     Layout = "_Layout";
@@ -33,7 +33,7 @@
 
 <div class="">
     <div class="row">
-        <a asp-action="Index" asp-controller="Admin">
+        <a asp-action="CreateHackathon" asp-controller="Admin">
             <button class="btn btn-info">
                 Создать хакатон
             </button>
@@ -71,7 +71,7 @@
                     <td>@hackathon.Prize</td>
                     <td>@hackathon.TargetAudience</td>
                     <td>
-                        <a asp-action="" asp-controller="">
+                        <a asp-action="EditHackathon" asp-controller="Admin" asp-route-hackathonId="@hackathon.Id">
                             <button>
                                 Изменить
                             </button>
