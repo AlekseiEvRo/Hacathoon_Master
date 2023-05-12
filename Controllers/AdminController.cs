@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Hacathoon_Master.AppContext;
 using Hacathoon_Master.Entities;
 using Hacathoon_Master.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -36,7 +38,7 @@ namespace Hacathoon_Master.Controllers
         public IActionResult Hackathons()
         {
             var hackathonController = new HackathonController(_configuration);
-            var hackathonViewModel = new HackathonsViewModel()
+            var hackathonViewModel = new HackathonListViewModel()
             {
                 Hackathons = hackathonController.GetHackathonList()
             };
@@ -93,6 +95,65 @@ namespace Hacathoon_Master.Controllers
             var userController = new UserController(_configuration);
             userController.EditUser(user);
             return RedirectToAction("Users");
+        }
+
+        [HttpGet]
+        public IActionResult CreateHackathon()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult CreateHackathon(HackathonViewModel hackathonViewModel)
+        {
+            return RedirectToAction("Hackathons");
+        }
+        
+        [HttpGet]
+        public IActionResult EditHackathon(int hackathonId)
+        {
+            var hackathonController = new HackathonController(_configuration);
+            var hackathon = hackathonController.GetHackathon(hackathonId);
+            var stream = new MemoryStream(hackathon.Image);
+            IFormFile file = new FormFile(stream, 0, hackathon.Image.Length, "name", "fileName");
+            var hackathonViewModel = new HackathonViewModel()
+            {
+                HackathonId = hackathon.Id,
+                Name = hackathon.Name,
+                StartDate = hackathon.StartDate,
+                EndDate = hackathon.EndDate,
+                EndRegistrationDate = hackathon.EndRegistrationDate,
+                Type = hackathon.Type,
+                Organisation = hackathon.Organisation,
+                Image = file,
+                Goal = hackathon.Goal,
+                Prize = hackathon.Prize,
+                TargetAudience = hackathon.TargetAudience
+            };
+            return View(hackathonViewModel);
+        }
+        
+        [HttpPost]
+        public IActionResult EditHackathon(HackathonViewModel hackathonViewModel)
+        {
+            var hackathonController = new HackathonController(_configuration);
+            var fileBytes = hackathonController.ReadIFormFileToByteArray(hackathonViewModel.Image);
+            var hackathon = new Hackathon()
+            {
+                Id = hackathonViewModel.HackathonId,
+                Name = hackathonViewModel.Name,
+                StartDate = hackathonViewModel.StartDate,
+                EndDate = hackathonViewModel.EndDate,
+                EndRegistrationDate = hackathonViewModel.EndRegistrationDate,
+                Type = hackathonViewModel.Type,
+                Organisation = hackathonViewModel.Organisation,
+                Image = fileBytes,
+                Goal = hackathonViewModel.Goal,
+                Prize = hackathonViewModel.Prize,
+                TargetAudience = hackathonViewModel.TargetAudience
+            };
+            hackathonController.EditHackathon(hackathon);
+            return RedirectToAction("Hackathons");
         }
     }
 }
