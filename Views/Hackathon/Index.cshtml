@@ -1,4 +1,4 @@
-﻿@model Hacathoon_Master.Entities.Hackathon
+﻿@model Hacathoon_Master.Models.HackathonDescriptionViewModel
 @{
     ViewData["Title"] = "About";
     Layout = "_Layout";
@@ -89,7 +89,16 @@
     </div>
 </div>
 <div class="pt-3 pb-5">
-    <a>
-        <button class="btn btn-info">Подать заявку на участие!</button>
-    </a>
+    @if (!Model.IsUserInvolved)
+    {
+        <a asp-action="CreateEntry" asp-controller="Hackathon" asp-route-hackathonId="@Model.HackathonId">
+            <button class="btn btn-info">Подать заявку на участие!</button>
+        </a>
+    }
+    else
+    {
+        <a>
+            <button class="btn btn-success">Заявка подана!</button>
+        </a>
+    }
 </div>

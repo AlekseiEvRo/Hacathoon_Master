@@ -14,6 +14,7 @@ namespace Hacathoon_Master.AppContext
         public DbSet<User_Auth> User_Auth { get; set; } = null!;
         public DbSet<User_Roles> User_Roles { get; set; } = null!;
         public DbSet<Hackathon> Hackathons { get; set; } = null!;
+        public DbSet<Entry> Entries { get; set; } = null!;
 
         private readonly string _connectionString;
 
