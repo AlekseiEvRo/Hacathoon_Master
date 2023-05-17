@@ -1,0 +1,95 @@
+﻿@model Hacathoon_Master.Entities.Hackathon
+@{
+    ViewData["Title"] = "About";
+    Layout = "_Layout";
+}
+
+
+<div class="row">
+    <div>
+        <img style="height: 700px; width: 100%;" src="@Model.GetFileFromBytes()"/>
+    </div>    
+</div>
+<div class="row pt-5">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Название</p>
+            </div>
+            <div class="col">
+                @Model.Name
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Дата начала</p>
+            </div>
+            <div class="col">
+                @Model.StartDate
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Дата окончания</p>
+            </div>
+            <div class="col">
+                @Model.EndDate
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Дата окончания регистрации</p>
+            </div>
+            <div class="col">
+                @Model.EndRegistrationDate
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Тип мероприятия</p>
+            </div>
+            <div class="col">
+                @Model.Type
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Организатор</p>
+            </div>
+            <div class="col">
+                @Model.Organisation
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Цель</p>
+            </div>
+            <div class="col">
+                @Model.Goal
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Приз</p>
+            </div>
+            <div class="col">
+                @Model.Prize
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold">Целевая аудитория</p>
+            </div>
+            <div class="col">
+                @Model.TargetAudience
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pt-3 pb-5">
+    <a>
+        <button class="btn btn-info">Подать заявку на участие!</button>
+    </a>
+</div>

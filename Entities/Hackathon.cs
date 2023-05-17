@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hacathoon_Master.Entities
 {
@@ -23,5 +24,10 @@ namespace Hacathoon_Master.Entities
         public string Prize { get; set; }
         [Column("Target_Audience")]
         public string TargetAudience { get; set; }
+
+        public string GetFileFromBytes()
+        {
+            return string.Format("data:image/png;base64,{0}", Convert.ToBase64String(Image));
+        }
     }
 }

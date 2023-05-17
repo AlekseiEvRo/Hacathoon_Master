@@ -17,26 +17,31 @@
                 <div class="container-fluid d-flex justify-content-center">
                     <div>
                         <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto mb-2 mb-lg-0 justify-content-around align-items-center" style="width:700px;">
+                            <ul class="navbar-nav mr-auto mb-2 mb-lg-0 justify-content-around align-items-center" style="width:820px;">
                                 <li class="nav-item">
                                     <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                                         <img src="~/img/logo.svg" width="100" height="100" alt="" loading="lazy">
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <form asp-controller="Home" asp-action="Index">
+                                    <a asp-controller="Home" asp-action="Index">
                                         <button class="btn btn-info" style="width:100px;">Главная</button>
-                                    </form>
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <form asp-controller="Home" asp-action="Contacts">
+                                    <a asp-controller="Home" asp-action="Index">
+                                        <button class="btn btn-info" style="width:120px;">Все события</button>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Contacts">
                                         <button class="btn btn-info" style="width:100px;">Контакты</button>
-                                    </form>
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <form asp-controller="Home" asp-action="About">
+                                    <a asp-controller="Home" asp-action="About">
                                         <button class="btn btn-info" style="width:100px;">О нас</button>
-                                    </form>
+                                    </a>
                                 </li>
                                 @if (User.IsInRole("ADMIN"))
                                 {
