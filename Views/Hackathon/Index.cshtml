@@ -89,16 +89,19 @@
     </div>
 </div>
 <div class="pt-3 pb-5">
-    @if (!Model.IsUserInvolved)
+    @if (User.IsInRole("USER"))
     {
-        <a asp-action="CreateEntry" asp-controller="Hackathon" asp-route-hackathonId="@Model.HackathonId">
-            <button class="btn btn-info">Подать заявку на участие!</button>
-        </a>
-    }
-    else
-    {
-        <a>
-            <button class="btn btn-success">Заявка подана!</button>
-        </a>
+        @if (!Model.IsUserInvolved)
+        {
+            <a asp-action="CreateEntry" asp-controller="Hackathon" asp-route-hackathonId="@Model.HackathonId">
+                <button class="btn btn-info">Подать заявку на участие!</button>
+            </a>
+        }
+        else
+        {
+            <a>
+                <button class="btn btn-success">Заявка подана!</button>
+            </a>
+        }
     }
 </div>

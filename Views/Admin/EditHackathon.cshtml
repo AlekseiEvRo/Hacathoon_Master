@@ -1,8 +1,9 @@
-﻿@model HackathonViewModel
+﻿@using Hacathoon_Master.Entities
+@model HackathonViewModel
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Новый пользователь";
+    ViewData["Title"] = "Данные хакатона";
 }
 
 @section SidebarMenu
@@ -31,8 +32,8 @@
     </nav>
 }
 
-<div id="login-form-container" class="container pb-3">
-    <form class="d-flex w-100" asp-controller="Admin" asp-action="EditHackathon" asp-route-hackathonId="@Model.HackathonId" enctype="multipart/form-data">
+<div id="login-form-container" class="row pb-3">
+    <form class="d-flex w-100 col pl-5" asp-controller="Admin" asp-action="EditHackathon" asp-route-hackathonId="@Model.HackathonId" enctype="multipart/form-data">
         <div class="d-flex flex-column justify-content-center w-100">
             <div class="">
                 <div>
@@ -53,7 +54,7 @@
                     <label for="inputStartDate" class="col-form-label">Дата начала</label>
                 </div>
                 <div>
-                    <input type="date" id="inputStartDate" class="form-control" aria-describedby="StartDateHelpInline" asp-for="StartDate" value="@Model.StartDate">
+                    <input type="date" id="inputStartDate" class="form-control" aria-describedby="StartDateHelpInline" asp-for="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")">
                 </div>
                 <div>
                     <span id="StartDateHelpInline" class="form-text">
@@ -67,7 +68,7 @@
                     <label for="inputEndDate" class="col-form-label">Дата окончания</label>
                 </div>
                 <div>
-                    <input type="date" id="inputEndDate" class="form-control" aria-describedby="EndDateHelpInline" asp-for="EndDate" value="@Model.EndDate">
+                    <input type="date" id="inputEndDate" class="form-control" aria-describedby="EndDateHelpInline" asp-for="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")">
                 </div>
                 <div>
                     <span id="TelephoneEndDate" class="form-text">
@@ -81,7 +82,7 @@
                     <label for="inputEndRegistrationDate" class="col-form-label">Дата окончания регистрации</label>
                 </div>
                 <div>
-                    <input type="date" id="inputEndRegistrationDate" class="form-control" aria-describedby="EndRegistrationDateHelpInline" asp-for="EndRegistrationDate" value="@Model.EndRegistrationDate">
+                    <input type="date" id="inputEndRegistrationDate" class="form-control" aria-describedby="EndRegistrationDateHelpInline" asp-for="EndRegistrationDate" value="@Model.EndRegistrationDate.ToString("yyyy-MM-dd")">
                 </div>
                 <div>
                     <span id="EndRegistrationDateHelpInline" class="form-text">
@@ -119,10 +120,10 @@
             </div>
 
             <div class="mb-3">
-              <label for="formFile" class="form-label">Изображение</label>
-              <input class="form-control" type="file" id="formFile" asp-for="@Model.Image" value="@Model.Image">
+                <label for="formFile" class="form-label">Изображение</label>
+                <input class="form-control" type="file" id="formFile" asp-for="@Model.Image" value="@Model.Image">
             </div>
-            
+
             <div class="">
                 <div>
                     <label for="inputGoal" class="col-form-label">Цель</label>
@@ -136,7 +137,7 @@
                     </span>
                 </div>
             </div>
-            
+
             <div class="">
                 <div>
                     <label for="inputPrize" class="col-form-label">Приз</label>
@@ -150,7 +151,7 @@
                     </span>
                 </div>
             </div>
-            
+
             <div class="">
                 <div>
                     <label for="inputTargetAudience" class="col-form-label">Целевая аудитория</label>
@@ -169,5 +170,40 @@
 
         </div>
     </form>
-
+    <div class="col">
+        <div class="pb-4">
+            <a>
+                <button class="btn btn-info">
+                    Добавить вопрос
+                </button>
+            </a>
+        </div>
+        <table class="table">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">#</th>
+                <th scope="col">Вопрос</th>
+                <th scope="col">Тип ответа</th>
+                <th scope="col">Действие</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var task in Model.HackathonTasks)
+            {
+                <tr class="table-secondary">
+                    <th scope="row">@task.Id</th>
+                    <td>@task.Text</td>
+                    <td>@Enum.Parse(typeof(AnswerType), task.AnswerTypeId.ToString())</td>
+                    <td>
+                        <a asp-action="EditTask" asp-controller="Admin" asp-route-hackathonId="@task.Id">
+                            <button>
+                                Изменить
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 </div>
