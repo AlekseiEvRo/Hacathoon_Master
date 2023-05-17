@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Hacathoon_Master.Entities;
 using Microsoft.AspNetCore.Http;
 
 namespace Hacathoon_Master.Models
@@ -17,5 +19,6 @@ namespace Hacathoon_Master.Models
         public string Goal { get; set; }
         public string Prize { get; set; }
         public string TargetAudience { get; set; }
+        public List<HackathonTask> HackathonTasks { get; set; }
     }
 }

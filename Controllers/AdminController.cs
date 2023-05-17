@@ -146,7 +146,8 @@ namespace Hacathoon_Master.Controllers
                 Image = file,
                 Goal = hackathon.Goal,
                 Prize = hackathon.Prize,
-                TargetAudience = hackathon.TargetAudience
+                TargetAudience = hackathon.TargetAudience,
+                HackathonTasks = hackathonController.GetHackathonTasks(hackathonId),
             };
             return View(hackathonViewModel);
         }
@@ -155,7 +156,15 @@ namespace Hacathoon_Master.Controllers
         public IActionResult EditHackathon(HackathonViewModel hackathonViewModel)
         {
             var hackathonController = new HackathonDAL(_configuration);
-            var fileBytes = hackathonController.ReadIFormFileToByteArray(hackathonViewModel.Image);
+            var fileBytes = new byte[0];
+            if (hackathonViewModel.Image != null)
+            {
+                fileBytes = hackathonController.ReadIFormFileToByteArray(hackathonViewModel.Image);
+            }
+            else
+            {
+                fileBytes = hackathonController.GetHackathon(hackathonViewModel.HackathonId).Image;
+            }
             var hackathon = new Hackathon()
             {
                 Id = hackathonViewModel.HackathonId,
@@ -172,6 +181,30 @@ namespace Hacathoon_Master.Controllers
             };
             hackathonController.EditHackathon(hackathon);
             return RedirectToAction("Hackathons");
+        }
+
+        [HttpGet]
+        public IActionResult CreateTask(int hackathonId)
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult CreateTask()
+        {
+            return Ok();
+        }
+        
+        [HttpGet]
+        public IActionResult EditTask(int hackathonId)
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult EditTask()
+        {
+            return Ok();
         }
     }
 }

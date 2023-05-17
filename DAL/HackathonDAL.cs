@@ -60,5 +60,13 @@ namespace Hacathoon_Master.DAL
                 return ms.ToArray();
             }
         }
+
+        public List<HackathonTask> GetHackathonTasks(int hackathonId)
+        {
+            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
+            {
+                return db.HackathonTask.Where(ht => ht.HackathonId == hackathonId).ToList();
+            }
+        }
     }
 }
