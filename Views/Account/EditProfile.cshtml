@@ -1,0 +1,113 @@
+﻿@model UserViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Изменить пользователя";
+}
+
+@section SidebarMenu
+{
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+          with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a  class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Хакатоны
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a asp-controller="Account" asp-action="EditProfile" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Даныне профиля
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+}
+
+<div id="login-form-container" class="container">
+    <form class="d-flex w-100" asp-controller="Account" asp-action="EditProfile" asp-route-userId="@Model.UserId">
+        <div class="d-flex flex-column justify-content-center w-100">
+            <div class="">
+                <div>
+                    <label for="inputName" class="col-form-label">Имя</label>
+                </div>
+                <div>
+                    <input type="text" id="inputName" class="form-control" aria-describedby="NameHelpInline" asp-for="Name" value="@Model.Name">
+                </div>
+                <div>
+                    <span id="NameHelpInline" class="form-text">
+                        Иван
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputSurname" class="col-form-label">Фамилия</label>
+                </div>
+                <div>
+                    <input type="text" id="inputSurname" class="form-control" aria-describedby="SurnameHelpInline" asp-for="Surname" value="@Model.Surname">
+                </div>
+                <div>
+                    <span id="SurnameHelpInline" class="form-text">
+                        Иванов
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputTelephone" class="col-form-label">Номер телефона</label>
+                </div>
+                <div>
+                    <input type="tel" id="inputTelephone" class="form-control" aria-describedby="TelephoneHelpInline" asp-for="Phone" value="@Model.Phone">
+                </div>
+                <div>
+                    <span id="TelephoneHelpInline" class="form-text">
+                        8(123)4567890
+                    </span>
+                </div>
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputEmail" class="col-form-label">Почта</label>
+                </div>
+                <div>
+                    <input type="email" id="inputEmail" class="form-control" aria-describedby="EmailHelpInline" asp-for="Email" value="@Model.Email">
+                </div>
+                <div>
+                    <span id="EmailHelpInline" class="form-text">
+                        example@mail.ru
+                    </span>
+                </div>
+            </div>
+            
+            <div class="">
+                <div>
+                    <label for="inputBirthday" class="col-form-label">День рождения</label>
+                </div>
+                <div>
+                    <input type="date" id="inputBirthday" class="form-control" aria-describedby="BirthdayHelpInline" asp-for="DateOfBirth" value="@Model.DateOfBirth">
+                </div>
+                <div>
+                    <span id="BirthdayHelpInline" class="form-text">
+                        example@mail.ru
+                    </span>
+                </div>
+            </div>
+
+            <button class="btn btn-info" type="submit">Сохранить</button>
+
+        </div>
+    </form>
+
+</div>

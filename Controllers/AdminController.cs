@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Hacathoon_Master.AppContext;
+using Hacathoon_Master.DAL;
 using Hacathoon_Master.Entities;
 using Hacathoon_Master.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -27,7 +28,7 @@ namespace Hacathoon_Master.Controllers
         
         public IActionResult Users()
         {
-            var userController = new UserController(_configuration);
+            var userController = new UserDAL(_configuration);
             var userListViewModel = new UserListViewModel()
             {
                 Users = userController.GetUsers()
@@ -37,7 +38,7 @@ namespace Hacathoon_Master.Controllers
 
         public IActionResult Hackathons()
         {
-            var hackathonController = new HackathonController(_configuration);
+            var hackathonController = new HackathonDAL(_configuration);
             var hackathonViewModel = new HackathonListViewModel()
             {
                 Hackathons = hackathonController.GetHackathonList()
@@ -54,7 +55,7 @@ namespace Hacathoon_Master.Controllers
         [HttpPost]
         public IActionResult CreateUser(UserViewModel userViewModel)
         {
-            var userController = new UserController(_configuration);
+            var userController = new UserDAL(_configuration);
             userController.CreateUser(userViewModel);
             return RedirectToAction("Users");
         }
@@ -62,7 +63,7 @@ namespace Hacathoon_Master.Controllers
         [HttpGet]
         public IActionResult EditUser(int userId)
         {
-            var userController = new UserController(_configuration);
+            var userController = new UserDAL(_configuration);
             var user = userController.GetUser(userId);
             var userViewModel = new UserViewModel()
             {
@@ -92,7 +93,7 @@ namespace Hacathoon_Master.Controllers
                 RoleId = userViewModel.RoleId
             };
             
-            var userController = new UserController(_configuration);
+            var userController = new UserDAL(_configuration);
             userController.EditUser(user);
             return RedirectToAction("Users");
         }
@@ -106,13 +107,30 @@ namespace Hacathoon_Master.Controllers
         [HttpPost]
         public IActionResult CreateHackathon(HackathonViewModel hackathonViewModel)
         {
+            var hackathonController = new HackathonDAL(_configuration);
+            var fileBytes = hackathonController.ReadIFormFileToByteArray(hackathonViewModel.Image);
+            var hackathon = new Hackathon()
+            {
+                Id = hackathonViewModel.HackathonId,
+                Name = hackathonViewModel.Name,
+                StartDate = hackathonViewModel.StartDate,
+                EndDate = hackathonViewModel.EndDate,
+                EndRegistrationDate = hackathonViewModel.EndRegistrationDate,
+                Type = hackathonViewModel.Type,
+                Organisation = hackathonViewModel.Organisation,
+                Image = fileBytes,
+                Goal = hackathonViewModel.Goal,
+                Prize = hackathonViewModel.Prize,
+                TargetAudience = hackathonViewModel.TargetAudience
+            };
+            hackathonController.CreateHackathon(hackathon);
             return RedirectToAction("Hackathons");
         }
         
         [HttpGet]
         public IActionResult EditHackathon(int hackathonId)
         {
-            var hackathonController = new HackathonController(_configuration);
+            var hackathonController = new HackathonDAL(_configuration);
             var hackathon = hackathonController.GetHackathon(hackathonId);
             var stream = new MemoryStream(hackathon.Image);
             IFormFile file = new FormFile(stream, 0, hackathon.Image.Length, "name", "fileName");
@@ -136,7 +154,7 @@ namespace Hacathoon_Master.Controllers
         [HttpPost]
         public IActionResult EditHackathon(HackathonViewModel hackathonViewModel)
         {
-            var hackathonController = new HackathonController(_configuration);
+            var hackathonController = new HackathonDAL(_configuration);
             var fileBytes = hackathonController.ReadIFormFileToByteArray(hackathonViewModel.Image);
             var hackathon = new Hackathon()
             {

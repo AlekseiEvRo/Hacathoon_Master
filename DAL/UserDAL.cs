@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 
-namespace Hacathoon_Master.Controllers
+namespace Hacathoon_Master.DAL
 {
-    public class UserController : Controller
+    public class UserDAL
     {
         private readonly IConfiguration _configuration;
 
-        public UserController(IConfiguration configuration)
+        public UserDAL(IConfiguration configuration)
         {
             _configuration = configuration;
         }

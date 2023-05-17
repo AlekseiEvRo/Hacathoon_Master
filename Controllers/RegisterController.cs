@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Hacathoon_Master.AppContext;
+using Hacathoon_Master.DAL;
 using Hacathoon_Master.Entities;
 using Hacathoon_Master.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace Hacathoon_Master.Controllers
 
         public IActionResult Register(RegisterViewModel registerViewModel)
         {
-            var userController = new UserController(_configuration);
+            var userController = new UserDAL(_configuration);
             userController.CreateUser(registerViewModel);
             return RedirectToAction("Index", "Home");
         }

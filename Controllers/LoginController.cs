@@ -44,7 +44,8 @@ namespace Hacathoon_Master.Controllers
                     {
                         new Claim(ClaimTypes.Email, user_auth.UserLogin),
                         new Claim(ClaimTypes.Name, db.User.Where(u => u.Email == user_auth.UserLogin).FirstOrDefault().Name),
-                        new Claim(ClaimTypes.Role, GetUserRole(user_auth.UserLogin))
+                        new Claim(ClaimTypes.Role, GetUserRole(user_auth.UserLogin)),
+                        new Claim(ClaimTypes.NameIdentifier, db.User.Where(u => u.Email == user_auth.UserLogin).FirstOrDefault().Id.ToString())
                     };
 
                     var claim = new ClaimsIdentity(claims, "ApplicationCookie",
