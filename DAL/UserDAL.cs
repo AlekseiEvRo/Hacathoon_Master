@@ -105,5 +105,14 @@ namespace Hacathoon_Master.DAL
                 db.SaveChanges();
             }
         }
+
+        public void DeleteUser(int userId)
+        {
+            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
+            {
+                db.User.Remove(db.User.Where(u => u.Id == userId).SingleOrDefault());
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -53,5 +53,14 @@ namespace Hacathoon_Master.DAL
                 db.SaveChanges();
             }
         }
+
+        public void DeleteHackathon(int hackathonId)
+        {
+            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
+            {
+                db.Hackathons.Remove(db.Hackathons.Where(h => h.Id == hackathonId).SingleOrDefault());
+                db.SaveChanges();
+            }
+        }
     }
 }

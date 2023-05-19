@@ -260,5 +260,21 @@ namespace Hacathoon_Master.Controllers
             taskDal.UpdateTask(task);
             return RedirectToAction("EditHackathon", new { hackathonId = taskViewModel.HackathonId });
         }
+
+        [HttpGet]
+        public IActionResult DeleteHackathon(int hackathonId)
+        {
+            var hackathonController = new HackathonDAL(_configuration);
+            hackathonController.DeleteHackathon(hackathonId);
+            return RedirectToAction("Hackathons");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteTask(int taskId, int hackathonId)
+        {
+            var taskDal = new TaskDAL(_configuration);
+            taskDal.DeleteTask(taskId);
+            return RedirectToAction("EditHackathon", new { hackathonId = hackathonId });
+        }
     }
 }
