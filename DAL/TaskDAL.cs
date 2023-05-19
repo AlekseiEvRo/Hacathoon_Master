@@ -58,5 +58,14 @@ namespace Hacathoon_Master.DAL
                 db.SaveChanges();
             }
         }
+
+        public void DeleteTask(int taskId)
+        {
+            using (ApplicationContext db = new ApplicationContext(_configuration["ConnectionString"]))
+            {
+                db.HackathonTask.Remove(db.HackathonTask.Where(t => t.Id == taskId).SingleOrDefault());
+                db.SaveChanges();
+            }
+        }
     }
 }

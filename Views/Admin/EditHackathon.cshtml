@@ -194,6 +194,11 @@
                                 Изменить
                             </button>
                         </a>
+                        <a asp-action="DeleteTask" asp-controller="Admin" asp-route-taskId="@task.Id" asp-route-hackathonId="@task.HackathonId">
+                            <button>
+                                Удалить
+                            </button>
+                        </a>
                     </td>
                 </tr>
             }
