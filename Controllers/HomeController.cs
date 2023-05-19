@@ -33,6 +33,14 @@ namespace Hacathoon_Master.Controllers
             };
             return View(homeViewModel);
         }
+        
+        public IActionResult AllHackathons()
+        {
+            var hackathonDal = new HackathonDAL(_configuration);
+            var hackathonList = hackathonDal.GetHackathonList();
+
+            return View(hackathonList);
+        }
 
         public IActionResult Contacts()
         {

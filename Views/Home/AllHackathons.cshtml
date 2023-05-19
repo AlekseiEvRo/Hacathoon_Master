@@ -1,0 +1,124 @@
+﻿@model List<Hacathoon_Master.Entities.Hackathon>
+
+@{
+    Layout = "_Layout";
+}
+
+<div style="padding-top: 120px;">
+    @for (int index = 0; index < Model.Count(); index += 2)
+    {
+        <div class="row">
+            <div class="col">
+                <img src="@Model[index].GetFileFromBytes()" style="height: 300px; width: 100%">
+                <div class="row pt-2">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col hackathon-name-container">
+                                <p class="font-weight-bold" style="color: rgb(169 15 207 / 78%); font-size: 20px;text-align: center;">
+                                    @Model[index].Name
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="font-weight-bold">Дата начала</p>
+                            </div>
+                            <div class="col">
+                                @Model[index].StartDate
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="font-weight-bold">Дата окончания</p>
+                            </div>
+                            <div class="col">
+                                @Model[index].EndDate
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="font-weight-bold">Дата окончания регистрации</p>
+                            </div>
+                            <div class="col">
+                                @Model[index].EndRegistrationDate
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="font-weight-bold">Организатор</p>
+                            </div>
+                            <div class="col">
+                                @Model[index].Organisation
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="font-weight-bold">Приз</p>
+                            </div>
+                            <div class="col">
+                                @Model[index].Prize
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (index != Model.Count)
+            {
+                <div class="col">
+                    <img src="@Model[index + 1].GetFileFromBytes()" style="height: 300px; width: 100%">
+                    <div class="row pt-2">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col hackathon-name-container">
+                                    <p class="font-weight-bold" style="color: rgb(169 15 207 / 78%); font-size: 20px;text-align: center;">
+                                        @Model[index + 1].Name
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold">Дата начала</p>
+                                </div>
+                                <div class="col">
+                                    @Model[index + 1].StartDate
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold">Дата окончания</p>
+                                </div>
+                                <div class="col">
+                                    @Model[index + 1].EndDate
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold">Дата окончания регистрации</p>
+                                </div>
+                                <div class="col">
+                                    @Model[index + 1].EndRegistrationDate
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold">Организатор</p>
+                                </div>
+                                <div class="col">
+                                    @Model[index + 1].Organisation
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold">Приз</p>
+                                </div>
+                                <div class="col">
+                                    @Model[index + 1].Prize
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
