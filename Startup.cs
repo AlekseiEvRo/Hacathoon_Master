@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hacathoon_Master.Helpers;
 
 namespace Hacathoon_Master
 {
@@ -28,6 +29,8 @@ namespace Hacathoon_Master
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            services.AddScoped<IFileHelper, Filehelper>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

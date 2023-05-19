@@ -8,31 +8,25 @@
 
 @section SidebarMenu
 {
-    <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
-            <li class="nav-item">
-                <a asp-controller="Admin" asp-action="Users" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Пользователи
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a asp-controller="Admin" asp-action="Hackathons" class="nav-link active">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Хакатоны
-                    </p>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <li class="nav-item">
+        <a asp-controller="Admin" asp-action="Users" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Пользователи
+            </p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="Admin" asp-action="Hackathons" class="nav-link active">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Хакатоны
+            </p>
+        </a>
+    </li>
 }
 
-<div id="login-form-container" class="row pb-3">
+<div id="form-container" class="row pb-3">
     <form class="d-flex w-100 col pl-5" asp-controller="Admin" asp-action="EditHackathon" asp-route-hackathonId="@Model.HackathonId" enctype="multipart/form-data">
         <div class="d-flex flex-column justify-content-center w-100">
             <div class="">
@@ -172,7 +166,7 @@
     </form>
     <div class="col">
         <div class="pb-4">
-            <a>
+            <a asp-controller="Admin" asp-action="CreateTask" asp-route-hackathonId="@Model.HackathonId">
                 <button class="btn btn-info">
                     Добавить вопрос
                 </button>
@@ -195,7 +189,7 @@
                     <td>@task.Text</td>
                     <td>@Enum.Parse(typeof(AnswerType), task.AnswerTypeId.ToString())</td>
                     <td>
-                        <a asp-action="EditTask" asp-controller="Admin" asp-route-hackathonId="@task.Id">
+                        <a asp-action="EditTask" asp-controller="Admin" asp-route-taskId="@task.Id">
                             <button>
                                 Изменить
                             </button>

@@ -69,5 +69,11 @@ namespace Hacathoon_Master.Controllers
                 return db.User_Roles.Where(r => r.RoleId == user_role).FirstOrDefault().RoleName;
             }
         }
+        
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

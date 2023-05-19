@@ -1,0 +1,65 @@
+﻿@model TaskViewModel
+@{
+    Layout = "_Layout";
+}
+
+@section SidebarMenu
+{
+    <li class="nav-item">
+        <a asp-controller="Admin" asp-action="Users" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Пользователи
+            </p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="Admin" asp-action="Hackathons" class="nav-link active">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+                Хакатоны
+            </p>
+        </a>
+    </li>
+}
+
+<div id="create-task-form-container">
+    <form class="d-flex w-100 col pl-5" asp-controller="Admin" asp-action="EditTask" asp-route-Id="@Model.Id" asp-route-hackathonId="@Model.HackathonId" enctype="multipart/form-data">
+        <div class="d-flex flex-column justify-content-center w-100">
+
+            <div class="">
+                <div>
+                    <label for="inputText" class="col-form-label">Текст</label>
+                </div>
+                <div>
+                    <input type="text" id="inputText" class="form-control" aria-describedby="TextHelpInline" asp-for="Text" value="@Model.Text">
+                </div>
+                <div>
+                    <span id="TextHelpInline" class="form-text">
+                        Иван
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Изображение</label>
+                <input class="form-control" type="file" id="formFile" asp-for="@Model.Image">
+            </div>
+
+            <div class="">
+                <div>
+                    <label for="inputAnswerTypeId" class="col-form-label">Тип ответа</label>
+                </div>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" asp-for="AnswerTypeId" value="@Model.AnswerTypeId">
+                    <option value=1>TEXT</option>
+                    <option value=2>FILE</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-info">
+                Добавить вопрос
+            </button>
+            
+        </div>
+    </form>
+</div>
